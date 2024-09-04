@@ -22,8 +22,18 @@ module.exports = {
   ignorePatterns: ["!**/.server", "!**/.client"],
 
   // Base config
-  extends: ["eslint:recommended"],
-
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+  ],
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  }, rules: {
+    'react/react-in-jsx-scope': 'off', // Disable the rule that requires React to be in scope
+  },
   overrides: [
     // React
     {
