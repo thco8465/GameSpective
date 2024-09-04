@@ -1,0 +1,47 @@
+/* Header.module.css */
+
+.items {
+    display: flex; /* Use flexbox for alignment */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+    font-family: 'Courier New', Courier, monospace; /* Font styling */
+    padding-bottom: 20px;
+    padding-top:20px;
+  }
+  
+  .items ul {
+    display: flex; /* Display the list items in a row */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+    list-style: none; /* Remove default list styling */
+  }
+  
+  .items li {
+    display: flex; /* Use flexbox to center the content */
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    width: 110px; /* Set the width of the circle */
+    height: 110px; /* Set the height of the circle to be equal to width */
+    border-radius: 50%; /* Make the item circular */
+    background-color: rgb(255, 196, 0); /* Background color */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth transition for hover effect */
+    margin: 0 15px; /* Adjust spacing between items (horizontal margins) */
+  }
+  
+  .items li:hover {
+    transform: scale(1.2); /* Slightly enlarge the item on hover */
+    background-color: aqua; /* Change background color on hover */
+  }
+  
+  .items li a {
+    color: white; /* Text color */
+    text-decoration: none; /* Remove underline from links */
+    font-weight: bold; /* Optional: make the text bold */
+    display: flex; /* Use flexbox to center text inside the circle */
+    align-items: center; /* Center text vertically */
+    justify-content: center; /* Center text horizontally */
+    height: 100%; /* Ensure the link takes the full height of the li */
+    width: 100%; /* Ensure the link takes the full width of the li */
+    text-align: center; /* Center text horizontally */
+  }
+  
