@@ -8,6 +8,7 @@ export default function Header() {
           <li><Link to="/">Home</Link></li>
           <li><Link to="/add-review">Add Review</Link></li>
           <li><Link to="/profile">Profile</Link></li>
+          <li><Link to="/sign-in">Sign In</Link></li>
         </ul>
       </nav>
     </header>

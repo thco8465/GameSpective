@@ -3,7 +3,7 @@
     font-weight: bold;
     font-size: 30px;
     font-family: 'Courier New', Courier, monospace;
-    color: #4B0082;
+    color: aqua;
 }
 .game-card-container{
     display: grid;

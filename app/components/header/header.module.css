@@ -24,13 +24,14 @@
     height: 110px; /* Set the height of the circle to be equal to width */
     border-radius: 50%; /* Make the item circular */
     background-color: rgb(255, 196, 0); /* Background color */
-    transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth transition for hover effect */
+    transition: transform 0.3s ease, background-color 0.8s ease; /* Smooth transition for hover effect */
     margin: 0 15px; /* Adjust spacing between items (horizontal margins) */
   }
   
   .items li:hover {
     transform: scale(1.2); /* Slightly enlarge the item on hover */
-    background-color: aqua; /* Change background color on hover */
+    background-color: #4B0082; /* Change background color on hover */
+
   }
   
   .items li a {

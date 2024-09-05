@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './signin.module.css';
-import {Link} from '@remix-run/react';
+import { Link } from '@remix-run/react';
 
 const SignIn: React.FC = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -12,9 +12,28 @@ const SignIn: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Sign-in data:', formData);
+    console.log('Submit button clicked'); // Add this line
+    try {
+      const response = await fetch('http://localhost:5000/api/authRoutes/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        console.log('Sign-in successful:', data);
+        // Handle successful sign-in (e.g., redirect or store token)
+      } else {
+        console.error('Sign-in failed:', data.message);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './signup.module.css';
-import {Link} from '@remix-run/react';
+import { Link } from '@remix-run/react';
+
 const SignUp: React.FC = () => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -17,11 +18,27 @@ const SignUp: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Sign-up data:', formData);
+  
+    try {
+      const response = await fetch('http://localhost:5000/api/authRoutes/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      const result = await response.json();
+      console.log('Sign-up result:', result);
+  
+      // Handle successful sign-up (e.g., redirect to sign-in)
+    } catch (error) {
+      console.error('Error during sign-up:', error);
+    }
   };
-
+  
   return (
     <div className={styles.container}>
       <h2>Sign Up</h2>
@@ -71,9 +88,9 @@ const SignUp: React.FC = () => {
           className={styles.input}
           required
         />
-        <Link to="/" className={styles.button}>
-        Sign Up
-      </Link>
+        <button type="submit" className={styles.button}>
+          Sign Up
+        </button>
       </form>
     </div>
   );
