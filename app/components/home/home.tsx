@@ -1,79 +1,74 @@
-import GameCard from '~/components/GameCard/gameCard'; // Adjust the path if needed
 import Header from '../header/header';
+import SearchBar from '../searchBar/searchBar'
 import styles from './home.module.css';
 import React, { useEffect, useState } from 'react';
 
-// Dummy data for recently published reviews
-const dummyReviews = [
-  { id: '1', title: 'Game One', coverImage: 'Nada', rating: 4, review: 'Great game, lots of fun!' },
-  { id: '2', title: 'Game Two', coverImage: 'Nada', rating: 3, review: 'Decent game but could be better.' },
-  { id: '3', title: 'Game Three', coverImage: 'Nada', rating: 5, review: 'Amazing experience, highly recommend!' },
-  { id: '1', title: 'Game One', coverImage: 'Nada', rating: 4, review: 'Great game, lots of fun!' },
-  { id: '2', title: 'Game Two', coverImage: 'Nada', rating: 3, review: 'Decent game but could be better.' },
-  { id: '3', title: 'Game Three', coverImage: 'Nada', rating: 5, review: 'Amazing experience, highly recommend!' },
-  { id: '1', title: 'Game One', coverImage: 'Nada', rating: 4, review: 'Great game, lots of fun!' },
-  { id: '2', title: 'Game Two', coverImage: 'Nada', rating: 3, review: 'Decent game but could be better.' },
-  { id: '3', title: 'Game Three', coverImage: 'Nada', rating: 5, review: 'Amazing experience, highly recommend!' },
-  { id: '1', title: 'Game One', coverImage: 'Nada', rating: 4, review: 'Great game, lots of fun!' },
-  { id: '2', title: 'Game Two', coverImage: 'Nada', rating: 3, review: 'Decent game but could be better.' },
-  { id: '3', title: 'Game Three', coverImage: 'Nada', rating: 5, review: 'Amazing experience, highly recommend!' },
-  // Add more dummy reviews as needed
-];
+// Define your Game type
+interface Game {
+  title: string;
+  cover: string;
+}
+
+// Function to fetch game data from your backend
+const fetchGameData = async (): Promise<Game[]> => {
+  try {
+    console.log('Fetching game data from: https://yellow-radios-knock.loca.lt/api/twitch_api/games?name=Fortnite'); // Log URL
+    const response = await fetch('https://yellow-radios-knock.loca.lt/api/twitch_api/games?name=Fortnite', {
+      headers: {
+        'bypass-tunnel-reminder': 'true'
+      }
+    });
+        console.log('Response Status:', response.status); // Log status
+    console.log('Response Headers:', response.headers); // Log headers
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log('Response Body:', data); // Log body
+    return [data]; // Adjust based on how data is structured (array or object)
+  } catch (error) {
+    console.error('Error fetching game data:', error);
+    return [];
+  }
+};
+
+
 
 export default function Home() {
-  const [reviews, setReviews] = useState(dummyReviews);
-  const [loading, setLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
-
-  const loadMoreReviews = () => {
-    if (loading || !hasMore) return;
-
-    setLoading(true);
-    // Simulate an API call to fetch more reviews 
-    setTimeout(() => {
-      const moreReviews = [
-        { id: '4', title: 'Game Four', coverImage: 'Nada', rating: 4, review: 'Great game, lots of fun!' },
-        { id: '5', title: 'Game Five', coverImage: 'Nada', rating: 3, review: 'Decent game but could be better.' },
-        { id: '6', title: 'Game Six', coverImage: 'Nada', rating: 5, review: 'Amazing experience, highly recommend!' },
-      ];
-      setReviews(prevReviews => [...prevReviews, ...moreReviews]);
-      setLoading(false);
-      // Update `hasMore` based on the fetched reviews
-      setHasMore(false); // Adjust this based on real API response
-    }, 1000); // Simulating an API call
-  };
+  const [games, setGames] = useState<Game[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const bottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight;
-      if (bottom) {
-        loadMoreReviews();
+    const loadGameData = async () => {
+      try {
+        const fetchedGames = await fetchGameData();
+        console.log('Games loaded:', fetchedGames); // Log the loaded games for debugging
+        setGames(fetchedGames);
+      } catch (error) {
+        console.error('Error loading game data:', error);
+      } finally {
+        setLoading(false);
       }
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [loading, hasMore]);
+
+    loadGameData();
+  }, []);
 
   return (
     <div>
-      <header>
-        <h1 className={styles.title}>GameSpective</h1>
-      </header>
       <Header />
+      <SearchBar/>
       <section>
         <div className={styles['game-card-container']}>
-          {reviews.map(game => (
-            <GameCard
-              key={game.id}
-              title={game.title}
-              coverImage={game.coverImage}
-              rating={game.rating}
-              review={game.review}
-            />
+          {loading && <p>Loading games...</p>}
+          {!loading && games.length === 0 && <p>No games found.</p>}
+          {!loading && games.length > 0 && games.map((game, index) => (
+            <div key={index} className={styles['game-card']}>
+              <img src={game.cover} alt={game.title} className={styles['game-cover-image']} />
+              <h2>{game.title}</h2>
+            </div>
           ))}
         </div>
-        {!hasMore && !loading && <p>No more recent reviews</p>}
-        {loading && <p>Loading more reviews...</p>}
       </section>
     </div>
   );

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import styles from './signin.module.css';
-import { Link } from '@remix-run/react';
+import { Link, useNavigate } from '@remix-run/react';
 
 const SignIn: React.FC = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
+  const navigate = useNavigate(); // useNavigate hook for redirecting
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -27,6 +28,7 @@ const SignIn: React.FC = () => {
       const data = await response.json();
       if (response.ok) {
         console.log('Sign-in successful:', data);
+        navigate('/');
         // Handle successful sign-in (e.g., redirect or store token)
       } else {
         console.error('Sign-in failed:', data.message);

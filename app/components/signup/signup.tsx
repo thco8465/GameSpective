@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './signup.module.css';
-import { Link } from '@remix-run/react';
+import { Link, useNavigate } from '@remix-run/react';
 
 const SignUp: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +10,7 @@ const SignUp: React.FC = () => {
     password: '',
     confirmPassword: '',
   });
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -32,6 +33,10 @@ const SignUp: React.FC = () => {
   
       const result = await response.json();
       console.log('Sign-up result:', result);
+
+      if(response.ok){
+        navigate('/');
+      }
   
       // Handle successful sign-up (e.g., redirect to sign-in)
     } catch (error) {
