@@ -1,5 +1,11 @@
 /* Header.module.css */
-
+.title{
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  font-family: 'Courier New', Courier, monospace;
+  color: aqua;
+}
 .items {
     display: flex; /* Use flexbox for alignment */
     justify-content: center; /* Center items horizontally */
@@ -44,5 +50,12 @@
     height: 100%; /* Ensure the link takes the full height of the li */
     width: 100%; /* Ensure the link takes the full width of the li */
     text-align: center; /* Center text horizontally */
+  }
+  .signOutButton {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font: inherit;
   }
   

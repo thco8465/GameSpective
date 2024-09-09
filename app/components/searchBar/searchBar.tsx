@@ -11,8 +11,14 @@ const GameSearch = () => {
 
   const handleSearch = async () => {
     try {
-      const response = await fetch(`https://yellow-radios-knock.loca.lt/api/twitch_api/games?name=${encodeURIComponent(searchQuery)}`);
-      if (!response.ok) {
+      const response = await fetch(
+        `https://gamespective.loca.lt/api/twitch_api/games?name=${encodeURIComponent(searchQuery)}`,
+        {
+          headers: {
+            'bypass-tunnel-reminder': 'true', // Bypass tunnel reminder
+          },
+        }
+      );      if (!response.ok) {
         throw new Error('Game not found or API error');
       }
       const data = await response.json();

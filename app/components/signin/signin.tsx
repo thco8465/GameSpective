@@ -27,6 +27,7 @@ const SignIn: React.FC = () => {
 
       const data = await response.json();
       if (response.ok) {
+        localStorage.setItem('token', data.token); // Store token
         console.log('Sign-in successful:', data);
         navigate('/');
         // Handle successful sign-in (e.g., redirect or store token)

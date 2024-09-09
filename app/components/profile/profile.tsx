@@ -1,29 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './profile.module.css';
 
-interface ProfileProps{
-    username: string;
-    reviewsCount: number;
-    level: number;
-}
-const Profile: React.FC<ProfileProps> = ({username, reviewsCount, level}) => {
-    return (
-        <div className={styles.profileContainer}>
-            <div className={styles.profileHeader}>
-                <h1 className={styles.username}>{username}</h1>
-            </div>
-            <div className={styles.profileDetails}>
-                <div className={styles.detail}>
-                    <span className={styles.label}>Reviews Posted: </span>
-                    <span className={styles.value}>{reviewsCount}</span>
-                </div>
-                <div className={styles.detail}>
-                    <span className={styles.label}>Level: </span>
-                    <span className={styles.value}>{level}</span>
-                </div>
-            </div>
+const Profile: React.FC = () => {
+  const [user, setUser] = useState<{ firstName: string; reviewCount: number; exp: number; level: string } | null>(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await fetch('http://localhost:5000/api/user/me', {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` // Attach token
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setUser(data);
+      } catch (error) {
+        console.error('Error fetching user data: ', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
+  if (!user) return <div>Loading...</div>;
+
+  return (
+    <div className={styles.profile}>
+      <h1>{user.firstName}'s Profile</h1>
+      <div className={styles.stats}>
+        <div className={styles.stat}>
+          <p>Review Count:</p>
+          <p>{user.reviewCount}</p>
         </div>
-    );
+        <div className={styles.stat}>
+          <p>Experience:</p>
+          <p>{user.exp}</p>
+        </div>
+        <div className={styles.stat}>
+          <p className={styles.level}>Level:</p>
+          <p>{user.level}</p>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Profile;

@@ -8,17 +8,19 @@ interface Game {
   title: string;
   cover: string;
 }
-
+interface User {
+  firstName: string;
+}
 // Function to fetch game data from your backend
 const fetchGameData = async (): Promise<Game[]> => {
   try {
-    console.log('Fetching game data from: https://yellow-radios-knock.loca.lt/api/twitch_api/games?name=Fortnite'); // Log URL
-    const response = await fetch('https://yellow-radios-knock.loca.lt/api/twitch_api/games?name=Fortnite', {
+    console.log('Fetching game data from: https://gamespective.loca.lt/api/twitch_api/games?name=Fortnite'); // Log URL
+    const response = await fetch('https://gamespective.loca.lt/api/twitch_api/games?name=Fortnite', {
       headers: {
         'bypass-tunnel-reminder': 'true'
       }
     });
-        console.log('Response Status:', response.status); // Log status
+    console.log('Response Status:', response.status); // Log status
     console.log('Response Headers:', response.headers); // Log headers
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -32,11 +34,38 @@ const fetchGameData = async (): Promise<Game[]> => {
   }
 };
 
+// Fetch user data with token
+const fetchUserData = async (): Promise<User | null> => {
+  try {
+    const token = localStorage.getItem('token');
+    const response = await fetch('http://localhost:5000/api/user/me', {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    // Extract the fields you need
+    const { firstName } = data;
+    return { firstName };
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+    return null;
+  }
+};
+
+
 
 
 export default function Home() {
   const [games, setGames] = useState<Game[]>([]);
   const [loading, setLoading] = useState(true);
+  const [userFirstName, setUserFirstName] = useState<string | null>(null);
 
   useEffect(() => {
     const loadGameData = async () => {
@@ -50,12 +79,25 @@ export default function Home() {
         setLoading(false);
       }
     };
-
-    loadGameData();
+    const loadUserData = async () => {
+      try {
+        const userData = await fetchUserData();
+        if(userData) {
+          setUserFirstName(userData.firstName);
+        }
+      } catch(error){
+        console.error('Error loading user data: ', error);
+      }
+    };
+    //loadGameData();
+    loadUserData();
   }, []);
 
   return (
     <div>
+      <div className={styles['user-info']}>
+        {userFirstName && <p>Welcome, {userFirstName}!</p>}
+      </div>
       <Header />
       <SearchBar/>
       <section>
