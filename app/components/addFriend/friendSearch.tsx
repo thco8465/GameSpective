@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './FriendSearch.module.css';  // Import the CSS module
+import styles from './friendSearch.module.css';  // Import the CSS module
 
 interface User {
     id: number;
