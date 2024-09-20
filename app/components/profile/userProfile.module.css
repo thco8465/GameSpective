@@ -1,0 +1,61 @@
+.profile {
+    background: #f4e3c1; /* Parchment-like background color */
+    border-radius: 12px; /* Slightly more rounded corners */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Deeper shadow for a more pronounced effect */
+    padding: 30px;
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+    font-family: 'Cinzel', serif; /* Medieval-inspired font */
+    color: #4a3c2e; /* Dark brown text color */
+  }
+  
+  .profile h1 {
+    color: #3e2a1e; /* Dark brown color for the title */
+    font-size: 3rem; /* Larger font size for emphasis */
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Light shadow for a more dramatic effect */
+  }
+  
+  .profile p {
+    font-size: 1.25rem;
+    color: #3e2a1e; /* Dark brown color for text */
+    margin: 15px 0;
+  }
+  
+  .profile .stats {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    font-weight: bold;
+  }
+  
+  .profile .stat {
+    background: #d4af37; /* Gold color background */
+    border-radius: 10px;
+    padding: 15px;
+    flex: 1;
+    margin: 0 15px;
+    border: 2px solid #bfa71a; /* Gold border for added definition */
+  }
+  
+  .profile .stat p {
+    font-size: 1.2rem;
+    margin: 5px 0;
+    color: #4a3c2e; /* Dark brown text color */
+  }
+  
+  .profile .level {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #3e2a1e; /* Dark brown color for the level */
+  }
+  
+  .reviews {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive columns */
+    gap: 20px; /* Space between cards */
+    margin: 0 auto;
+    padding: 20px;
+  }
+  

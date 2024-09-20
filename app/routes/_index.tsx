@@ -1,12 +1,12 @@
 import React from 'react';
-import Home from '../components/home/home'; // Adjust the path as needed
-// index.tsx or App.tsx
-import 'antd/dist/reset.css'; // For Ant Design v5
+import { Link, useNavigate } from '@remix-run/react';
 
 export default function Index() {
-  return (
-    <div>
-      <Home />
-    </div>
-  );
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    
+    navigate('/sign-in'); // Navigate to /sign-in when the component mounts
+  }, [navigate]);
+
+  return null; // Optionally return null or a loading state if needed
 }

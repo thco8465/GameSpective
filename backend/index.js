@@ -8,7 +8,6 @@ const authRoutes = require('./routes/authRoutes');
 const twitchAPI = require('./routes/twitch_api');
 const userRoutes = require('./routes/user');
 const reviews = require('./routes/review');
-const { pool } = require('./db'); // Import pool from db.js
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -20,11 +19,18 @@ app.use(cors({
   origin: function (origin, callback) {
     const allowedOrigins = [
       'http://localhost:5173',
+      'https://gamespective.loca.lt',
       'http://127.0.0.1:5173',
-      'https://gamespective.loca.lt/api/twitch_api/games?name=Fortnite',
+      'http://localhost:5000',
+      'http://localhost:5000/api/review',
+      'https://gamespective.loca.lt/api/review',
+      'https://gamespective.loca.lt/api/twitch_api/games?name=',
       'https://gamespective.loca.lt',
       'https://gamespective.loca.lt/api/user/me',
-      'https://gamespective.loca.lt/api/games'
+      'https://gamespective.loca.lt/api/user/displayReviews',
+      'https://gamespective.loca.lt/api/user/reviewCount',
+      'https://gamespective.loca.lt/api/games',
+      'https://gamespective.loca.lt/api/games/search-games',
     ];
 
     console.log('Requested Origin:', origin);

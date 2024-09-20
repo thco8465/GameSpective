@@ -1,0 +1,8 @@
+/* layout.module.css */
+.layoutContainer {
+    /*display: flex;
+    flex-direction: column;*/
+    gap: 20px; /* Adjust gap value as needed */
+    padding: 20px; /* Optional padding for the entire layout */
+  }
+  

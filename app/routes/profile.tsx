@@ -1,18 +1,16 @@
 import React from 'react';
-import Header from '../components/header/header'
-import Profile from '../components/profile/profile'
-const ProfilePage: React.FC = () => {
-  // Sample data, replace with actual data from state or props
-  const username = 'JohnDoe';
-  const reviewsCount = 42;
-  const level = 4;
-
+import Profile from '../components/profile/profile'; // Adjust path as needed
+import Title from '../components/Title/title';
+import Header from '../components/header/header';
+import Layout from '../components/layout/layout';
+export default function ProfilePage() {
   return (
     <div>
+      <Title />
       <Header />
-      <Profile username={username} reviewsCount={reviewsCount} level={level} />
+      <Layout>
+        <Profile />
+      </Layout>
     </div>
-  );
-};
-
-export default ProfilePage;
+  )
+}

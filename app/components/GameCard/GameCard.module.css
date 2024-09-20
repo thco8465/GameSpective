@@ -1,38 +1,28 @@
-/* GameCard.module.css */
 .gameCard {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 16px;
-    text-align: center;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease;
-  }
-  
-  .gameCard:hover {
-    transform: scale(1.05);
-  }
-  
-  .gameCard__image {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-  }
-  
-  .gameCard__title {
-    font-size: 1.25rem;
-    margin: 12px 0;
-    color: #333;
-  }
-  
-  .gameCard__description {
-    font-size: 1rem;
-    color: #666;
-  }
-  
-  .gameCard__rating {
-    margin-top: 8px;
-    font-weight: bold;
-    color: #e2b4bd;
-  }
-  
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  text-align: center;
+}
+
+.gameCard__image {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.gameCard__title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-top: 8px;
+  color: #333;
+}
+
+.gameCard__rating {
+  font-size: 1rem;
+  color: #666;
+  margin-top: 8px;
+}

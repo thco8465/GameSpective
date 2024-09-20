@@ -1,19 +1,55 @@
-// dataProcessing.js or similar file
-const { normalizeGameName } = require('./utils/normalize');
+const { normalizeGameName } = require('./normalize');
+const fetch = require('node-fetch');
+const { getValidToken } = require('./twitch_api_utils'); // Import getValidToken
 
-async function fetchAndNormalizeGameNames() {
-  const response = await fetch('https://api.twitch.tv/helix/games');
-  const data = await response.json();
+const clientId = process.env.TWITCH_CLIENT_ID;
 
-  // Example processing of fetched game names
-  const games = data.data.map(game => {
+const fetchAndNormalizeGameNames = async (cursor = null) => {
+  try {
+    // Get a valid token
+    const accessToken = await getValidToken();
+    if (!accessToken) {
+      throw new Error('No valid access token available');
+    }
+
+    // Fetch data from Twitch API
+    let url = 'https://api.twitch.tv/helix/games/top';
+    if (cursor) {
+      url += `?after=${cursor}`;
+    }
+
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Client-ID': clientId,
+        'Authorization': `Bearer ${accessToken}`,
+      },
+    });
+
+    const data = await response.json();
+    console.log('Twitch API Response Data:', data);
+
+    if (!data.data || !Array.isArray(data.data)) {
+      throw new Error('Invalid data format from Twitch API');
+    }
+
+    // Example of normalization
+    const games = data.data.map(game => ({
+      name: game.name || 'Unknown', // Default to 'Unknown' if name is missing
+      normalized_name: normalizeGameName(game.name) || 'Unknown', // Ensure normalized_name is set
+      cover: game.box_art_url || '', // Use box_art_url for cover
+      description: '' // No description field available
+    }));
+
+    // Return data with cursor for pagination if needed
     return {
-      name: game.name,
-      normalized_name: normalizeGameName(game.name),
-      cover: game.cover_url, // Example field
-      description: game.description // Example field
+      games,
+      cursor: data.pagination && data.pagination.cursor ? data.pagination.cursor : null
     };
-  });
+  } catch (error) {
+    console.error('Error in fetchAndNormalizeGameNames:', error);
+    throw error; // Rethrow error after logging
+  }
+};
 
-  return games;
-}
+module.exports = { fetchAndNormalizeGameNames };

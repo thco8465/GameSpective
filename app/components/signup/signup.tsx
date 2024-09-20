@@ -6,6 +6,7 @@ const SignUp: React.FC = () => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
+    username: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -23,7 +24,7 @@ const SignUp: React.FC = () => {
     e.preventDefault();
   
     try {
-      const response = await fetch('http://localhost:5000/api/authRoutes/signup', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/authRoutes/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -63,6 +64,15 @@ const SignUp: React.FC = () => {
           value={formData.lastName}
           onChange={handleChange}
           placeholder="Last Name"
+          className={styles.input}
+          required
+        />
+        <input
+          type="text"
+          name="username"
+          value={formData.username}
+          onChange={handleChange}
+          placeholder="Username"
           className={styles.input}
           required
         />

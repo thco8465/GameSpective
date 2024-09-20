@@ -20,3 +20,10 @@
     border-radius: 8px;
     justify-content: center;
 }
+.reviews {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive columns */
+    gap: 20px; /* Space between cards */
+    margin: 0 auto;
+    padding: 20px;
+  }

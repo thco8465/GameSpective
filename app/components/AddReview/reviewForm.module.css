@@ -1,0 +1,43 @@
+.reviewCard {
+  background-size: cover;
+  background-color: #f4e3c1; /* Parchment-like background */
+  border: 5px solid #B08D57;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: transform 0.2s ease-in-out;
+  }
+  .title{
+    text-align: center;
+  }
+  .reviewForm {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .formGroup {
+    margin-bottom: 16px;
+  }
+  
+  .formGroup label {
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .formGroup input,
+  .formGroup textarea,
+  .formGroup .ant-select {
+    width: 100%;
+  }
+  
+  .submitButton {
+    align-self: center;
+  }
+  
+  .spinner {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  

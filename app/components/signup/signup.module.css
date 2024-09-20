@@ -1,10 +1,18 @@
 .container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #f5f3e8; /* Light parchment or old paper color */
+  border: 2px solid #4a3c2b; /* Dark brown border */
+  border-radius: 12px; /* Rounded corners */
+  padding: 20px;
+  margin: 20px auto;
+  font-family: 'Garamond', serif; /* Medieval-style font */
+  color: #3b2a1a; /* Dark text color for contrast */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Cinzel', serif; /* Example of a medieval-inspired font */
   }
   
   .form {
@@ -22,7 +30,7 @@
   .button {
     padding: 10px;
     margin-top: 10px;
-    background-color: rgb(255, 196, 0);;
+    background-color: #B08D57;
     color: white;
     border: none;
     border-radius: 4px;
@@ -32,6 +40,7 @@
   }
   
   .button:hover {
-    background-color: #4b0082;
+    background-color: #DAA520;
+    transform: scale(1.05);
   }
   

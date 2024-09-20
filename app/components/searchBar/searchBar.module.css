@@ -1,0 +1,95 @@
+/* Container for the search bar */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: url('/path-to-your-parchment-texture.jpg') no-repeat center center; /* Add parchment background texture */
+  background-size: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for a lifted effect */
+}
+
+/* Search box styling */
+.searchBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Input field styling */
+.input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 2px solid #B08D57; /* Border color matching the medieval theme */
+  border-radius: 8px;
+  font-size: 18px;
+  background-color: #f4e3c1; /* Parchment-like background color */
+  font-family: 'Cinzel', serif; /* Use a medieval-inspired font */
+}
+
+/* Button styling */
+.button {
+  padding: 12px 20px;
+  background-color: #DAA520; /* Gold color for medieval feel */
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Add smooth transitions */
+  font-family: 'Cinzel', serif; /* Use a medieval-inspired font */
+}
+
+.button:hover {
+  background-color: #B08D57; /* Darker gold for hover effect */
+  transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+/* Error message styling */
+.error {
+  color: red;
+  font-size: 16px;
+  margin-top: 10px;
+  font-family: 'Cinzel', serif; /* Use a medieval-inspired font */
+}
+
+/* Game info container styling */
+.gameInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  font-family: 'Cinzel', serif; /* Use a medieval-inspired font */
+}
+
+/* Cover image styling */
+.coverImage {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 4px solid #B08D57; /* Border color matching the medieval theme */
+  margin-bottom: 10px; /* Add space below the image */
+}
+
+/* Select button styling */
+.selectButton {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #DAA520; /* Gold color for medieval feel */
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Add smooth transitions */
+  font-family: 'Cinzel', serif; /* Use a medieval-inspired font */
+}
+
+.selectButton:hover {
+  background-color: #B08D57; /* Darker gold for hover effect */
+  transform: scale(1.05); /* Slight scale effect on hover */
+}
