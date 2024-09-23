@@ -6,7 +6,6 @@ body {
 }
 /* Main header styling */
 .header {
-  /*background: url('/path-to-your-parchment-texture.jpg') no-repeat center center;*/
   background-size: cover;
   background-color: #f4e3c1; /* Parchment-like background */
   border: 5px solid #B08D57;

@@ -4,7 +4,6 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background: url('/path-to-your-parchment-texture.jpg') no-repeat center center; /* Add parchment background texture */
   background-size: cover;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for a lifted effect */
