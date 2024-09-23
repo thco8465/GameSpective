@@ -20,6 +20,9 @@ app.use(cors({
     const allowedOrigins = [
       'http://localhost:5173',
       'https://gamespective.onrender.com',
+      'https://gamespective.onrender.com/',
+      'https://gamespective.onrender.com/sign-in',
+      'https://gamespective.onrender.com/sign-up',
       'https://gamespective.loca.lt',
       'https://gamespective.loca.lt/',
       'https://gamespectivebackend.onrender.com/',
