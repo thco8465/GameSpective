@@ -13,6 +13,7 @@ export default defineConfig({
     }),
     tsconfigPaths(),
   ],
+  base: process.env.VITE_BASE_URL || '/', // Default to '/' if undefined
   server: {
     watch: {
       usePolling: true, // Enables polling for file watching
